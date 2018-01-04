@@ -1,1 +1,1 @@
-# angular2-movie-review-test
+Movie review application
