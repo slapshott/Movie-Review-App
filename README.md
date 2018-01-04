@@ -1,1 +1,1 @@
-# Movie-Review-App
+Movie review application
