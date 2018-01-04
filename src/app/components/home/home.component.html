@@ -13,7 +13,7 @@
             <h3>{{movie.title}}</h3>
             <p>{{movie.overview.slice(0,150)}}...</p>
             <p>
-              <button href="#" class="btn btn-primary" role="button" routerLink="/movie/{{movie.id}}">View Details</button>
+              <button href="#" class="btn btn-primary" role="button" routerLink="/movie/{{movie.id}}" [disabled]="!auth.isLoggedIn()">View Details</button>
               <button href="#" class="btn btn-default" role="button" routerLink="/reviews/{{movie.id}}/add-review" [disabled]="!auth.isLoggedIn()">Write a Review</button></p>
           </div>
         </div>
