@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Most recent movies</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+
+      <div *ngFor="let movie of mostRecentMovies; let i = index" class="col-sm-6 col-md-4">
+
+        <div class="thumbnail equal-height">
+          <img *ngIf="movie.poster_path" class="thumbnail" src="http://image.tmdb.org/t/p/w500/{{movie.poster_path}}">
+          <div class="caption">
+            <h3>{{movie.title}}</h3>
+            <p>{{movie.overview.slice(0,150)}}...</p>
+            <p>
+              <button href="#" class="btn btn-primary" role="button" routerLink="/movie/{{movie.id}}">View Details</button>
+              <button href="#" class="btn btn-default" role="button" routerLink="/reviews/{{movie.id}}/add-review" [disabled]="!auth.isLoggedIn()">Write a Review</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
