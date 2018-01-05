@@ -29,24 +29,23 @@ export class ReviewComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       let id = params['movieId']
-      this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)
       this.loadReview(id)
     })
   }
 
   addReview() {
-    // console.log(this.starsCount)
-    // console.log(this.reviewContent)
-    // console.log(this.movie)
-
-    this.reviewsService.addReview(this.starsCount, this.reviewContent, this.movie)
+    let movieId = this.movie['id']
+  
+    this.reviewsService.addNewReview(this.starsCount, this.reviewContent, this.movie).subscribe(res => {
+      this.loadReview(movieId)
+      this.reviewContent = ''
+    })
   }
 
   loadReview(id){
-    this.moviesService.getMovie(id).subscribe()
-    this.reviewsService.getAllReviews(id)
-    .subscribe(review =>{
-      this.reviews = review
-    }) 
+    this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)
+    this.reviewsService
+      .getAllReviews(id)
+      .subscribe(review =>{this.reviews = review}) 
   }
 }

@@ -42,7 +42,9 @@ export class MovieComponent implements OnInit {
 
   loadComments(id) {
     this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)
-    this.reviewsService.getAllComments(id).subscribe(comments => {
+    this.reviewsService
+      .getAllComments(id)
+      .subscribe(comments => {
       this.comments = comments
     })
   }

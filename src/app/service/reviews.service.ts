@@ -25,7 +25,11 @@ export class ReviewsService {
         }
 
         let url = `${this.baseUrl}appdata/${this.appKey}/comments`
-        return this.http.post(url, JSON.stringify(newComment), { headers: this.getUserHeaders() })
+        return this.http.post(
+            url, 
+            JSON.stringify(newComment), 
+            { headers: this.getUserHeaders() }
+        )
     }
 
     getUserHeaders() {
@@ -40,7 +44,7 @@ export class ReviewsService {
         return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
     }
 
-    addReview(starsCount: number, reviewContnet: string, movie: Object) {
+    addNewReview(starsCount: number, reviewContnet: string, movie: Object) {
         let newReview = {
             user: this.getUserDetails(),
             rating: starsCount,
@@ -49,11 +53,11 @@ export class ReviewsService {
         }
 
         let url = `${this.baseUrl}appdata/${this.appKey}/reviews`
-        this.http.post(url, JSON.stringify(newReview), 
-        { headers: this.getUserHeaders() } ).subscribe((res)=> {
-            this.router.navigate(['/reviews'])
-            console.log(res.json())
-        })
+        return this.http.post(
+            url,
+            JSON.stringify(newReview), 
+            { headers: this.getUserHeaders() } )
+            
     }
 
     getAllReviews(movieId){

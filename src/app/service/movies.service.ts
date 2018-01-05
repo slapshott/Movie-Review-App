@@ -22,10 +22,6 @@ export class MoviesService {
         let headers = new Headers()
         headers.append('Content-Type', 'application/json')
 
-        // return this._http.get(`https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=${sevenDaysBeforeAsString}&primary_release_date.lte=${todayAsString}&api_key=${this.apiKey}`, {headers: headers})
-        //     .take(10)
-        //     .map(x => x.json())
-
         return this.jsonp.get(`https://api.themoviedb.org/3/discover/movie?callback=JSONP_CALLBACK&primary_release_date.gte=${sevenDaysBeforeAsString}&primary_release_date.lte=${todayAsString}&api_key=${this.apiKey}`)
             .map(x => x.json().results)
     }
