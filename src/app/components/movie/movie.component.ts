@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { MoviesService } from '../../service/movies.service'
 import { ReviewsService } from '../../service/reviews.service'
 import { AuthenticationService } from '../../service/authentication.service'
+import { CommentsService } from 'app/service/comments.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class MovieComponent implements OnInit {
     private router: ActivatedRoute,
     private moviesService: MoviesService,
     private auth: AuthenticationService,
-    private reviewsService: ReviewsService
+    private commentsService: CommentsService
   ) { }
 
   ngOnInit() {
@@ -33,7 +34,7 @@ export class MovieComponent implements OnInit {
 
   addComment() {
     let movieId = this.movie['id']
-    this.reviewsService.addNewComment(this.newComment, movieId).subscribe(res => {
+    this.commentsService.addNewComment(this.newComment, movieId).subscribe(res => {
       this.loadComments(movieId)
       this.newComment = ''
     })
@@ -42,27 +43,31 @@ export class MovieComponent implements OnInit {
 
   loadComments(id) {
     this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)
-    this.reviewsService
+    this.commentsService
       .getAllComments(id)
       .subscribe(comments => {
       this.comments = comments
-      comments.forEach(comment => {
-        console.log(comment._id)
-      });
+      // comments.forEach(comment => {
+      //   console.log(comment._id)
+      // });
     })
   }
 
   deleteComment(){
     let movieId = this.movie['id']
-    this.reviewsService.getAllComments(movieId).subscribe(comment => {
+    this.commentsService.getAllComments(movieId).subscribe(comment => {
       let id = comment[0]['_id']
-      this.reviewsService.deleteComment(id)
+      console.log(id)
+      this.commentsService.deleteComment(id)
     })
     
   }
 
   editComment(){
-    this.reviewsService.editComment()
+    let comment 
+    let movieId
+    let commentId
+    this.commentsService.editComment(comment, movieId, commentId)
   }
 
 }

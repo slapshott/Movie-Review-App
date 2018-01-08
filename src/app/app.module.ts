@@ -6,10 +6,11 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { RatingModule } from 'ngx-rating'
 
 // Services
-import {routing} from './app.routing'
-import {AuthenticationService } from './service/authentication.service'
-import {MoviesService } from './service/movies.service'
-import {ReviewsService } from './service/reviews.service'
+import { routing} from './app.routing'
+import { AuthenticationService } from './service/authentication.service'
+import { MoviesService } from './service/movies.service'
+import { ReviewsService } from './service/reviews.service'
+import { CommentsService } from './service/comments.service'
 
 // Components
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { ReviewComponent } from './components/review/review.component';
   providers: [ 
     AuthenticationService,
     MoviesService,
+    CommentsService,
     ReviewsService,
   ],
   bootstrap: [AppComponent]

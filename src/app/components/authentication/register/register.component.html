@@ -15,7 +15,7 @@
       <div class="col-lg-10">
         <input type="password" class="form-control" id="inputPassword" placeholder="Enter password..." formControlName="password">
 
-        <div class="alert alert-warning" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">You must enter a password!</div>
+        <div class="alert alert-warning" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched" ng-model="size" name="size" min="5" max="10">You must enter a password!</div>
 
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="col-lg-10">
         <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm password..." formControlName="confirmPassword">
 
-        <div class="alert alert-warning" *ngIf="registerForm.controls['confirmPassword'].hasError('required') == true && registerForm.controls['confirmPassword'].touched">You must enter a password!</div>
+        <div class="alert alert-warning" *ngIf="registerForm.controls['confirmPassword'].hasError('required') == true && registerForm.controls['confirmPassword'].touched">You must enter a confirm password!</div>
         <div class="alert alert-warning" *ngIf="registerForm.controls['confirmPassword'].getError('notEquivalent') == true && registerForm.controls['confirmPassword'].touched">Passwords do not match!</div>
 
       </div>

@@ -17,26 +17,6 @@ export class ReviewsService {
         this.appSecret = kinvey.appSecret;
     }
 
-    addNewComment(comment: string, movieId: number) {
-        let newComment = {
-            movieId: movieId,
-            user: this.getUserDetails(),
-            comment: comment
-        }
-
-        let url = `${this.baseUrl}appdata/${this.appKey}/comments`
-        return this.http.post(
-            url, 
-            JSON.stringify(newComment), 
-            { headers: this.getUserHeaders() }
-        )
-    }
-
-    getAllComments(movieId) {
-        let url = `${this.baseUrl}appdata/${this.appKey}/comments?query={"movieId":${movieId}}`
-        return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
-    }
-
     addNewReview(starsCount: number, reviewContnet: string, movie: Object) {
         let newReview = {
             user: this.getUserDetails(),
@@ -57,18 +37,6 @@ export class ReviewsService {
     getAllReviews(movieId){
         let url = `${this.baseUrl}appdata/${this.appKey}/reviews?query={"movieId":${movieId}}`
         return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
-    }
-
-    deleteComment(id){
-        let url = `${this.baseUrl}appdata/${this.appKey}/movie/${id}`
-        return this.http.delete(
-            url,
-            {headers: this.getDeleteHeaders()}
-        )
-    }
-
-    editComment(){
-
     }
 
     getUserHeaders() {

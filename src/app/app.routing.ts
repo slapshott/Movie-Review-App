@@ -30,10 +30,10 @@ const appRoutes: Routes = [
         path:'reviews/:movieId/add-review',
         component: ReviewComponent
     },
-    {
-        path: 'reviews',
-        component: ReviewComponent
-    }
+    // {
+    //     path: 'reviews',
+    //     component: ReviewComponent
+    // }
 ]
 
 export const appRoutingProviders: any[] = []
