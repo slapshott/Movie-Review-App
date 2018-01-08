@@ -8,7 +8,7 @@ export class MoviesService {
 
     apiKey: string
 
-    constructor(private _http: Http, private jsonp: Jsonp) {
+    constructor(private jsonp: Jsonp) {
         this.apiKey = '8b6aeacc6e9bcfb0f54cfb35cc5c1828'
     }
 

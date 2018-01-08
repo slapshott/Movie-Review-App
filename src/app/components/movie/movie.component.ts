@@ -46,7 +46,23 @@ export class MovieComponent implements OnInit {
       .getAllComments(id)
       .subscribe(comments => {
       this.comments = comments
+      comments.forEach(comment => {
+        console.log(comment._id)
+      });
     })
+  }
+
+  deleteComment(){
+    let movieId = this.movie['id']
+    this.reviewsService.getAllComments(movieId).subscribe(comment => {
+      let id = comment[0]['_id']
+      this.reviewsService.deleteComment(id)
+    })
+    
+  }
+
+  editComment(){
+    this.reviewsService.editComment()
   }
 
 }

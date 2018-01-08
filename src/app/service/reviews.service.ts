@@ -32,13 +32,6 @@ export class ReviewsService {
         )
     }
 
-    getUserHeaders() {
-        let headers = new Headers()
-        headers.append('Authorization', 'Kinvey ' + JSON.parse(localStorage.getItem('profile'))['_kmd']['authtoken'])
-        headers.append('Content-Type', 'application/json')
-        return headers;
-    }
-
     getAllComments(movieId) {
         let url = `${this.baseUrl}appdata/${this.appKey}/comments?query={"movieId":${movieId}}`
         return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
@@ -56,13 +49,40 @@ export class ReviewsService {
         return this.http.post(
             url,
             JSON.stringify(newReview), 
-            { headers: this.getUserHeaders() } )
+            { headers: this.getUserHeaders() } 
+        )
             
     }
 
     getAllReviews(movieId){
         let url = `${this.baseUrl}appdata/${this.appKey}/reviews?query={"movieId":${movieId}}`
         return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
+    }
+
+    deleteComment(id){
+        let url = `${this.baseUrl}appdata/${this.appKey}/movie/${id}`
+        return this.http.delete(
+            url,
+            {headers: this.getDeleteHeaders()}
+        )
+    }
+
+    editComment(){
+
+    }
+
+    getUserHeaders() {
+        let headers = new Headers()
+        headers.append('Authorization', 'Kinvey ' + JSON.parse(localStorage.getItem('profile'))['_kmd']['authtoken'])
+        headers.append('Content-Type', 'application/json')
+        return headers;
+    }
+
+    getDeleteHeaders() {
+        let headers = new Headers()
+        headers.append('Authorization', 'Basic ' + JSON.parse(localStorage.getItem('profile'))['_kmd']['authtoken'])
+        headers.append('Content-Type', 'application/json')
+        return headers;
     }
 
     getUserDetails() {

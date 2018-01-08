@@ -39,7 +39,9 @@
             <div class="col-lg-12 col-sm-6">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <strong>{{review.user.username}}</strong> <span class="text-muted">Review added: {{review._kmd.lmt | date}}</span>
+                  <strong>{{review.user.username}}</strong><br/>
+                  <span class="text-muted">Review added: {{review._kmd.lmt | date}} </span><br/>
+                  <span class="text-muted">Stars: {{review.rating}} </span>
                 </div>
                 <div class="panel-body">
                   {{review.content}}
