@@ -8,9 +8,9 @@ import { RatingModule } from 'ngx-rating'
 // Services
 import { routing} from './app.routing'
 import { AuthenticationService } from './service/authentication.service'
+import { CommentsService } from './service/comments.service'
 import { MoviesService } from './service/movies.service'
 import { ReviewsService } from './service/reviews.service'
-import { CommentsService } from './service/comments.service'
 
 // Components
 import { AppComponent } from './app.component';
