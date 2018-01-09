@@ -3,8 +3,7 @@ This application uses a public rest API "api.themoviedb.org"
 to get all the information.
 Kinvey insure the server and the database.
 Application provides  information about random movies.
-User can see the general section with all the movies but can not do
-anything else.
+User can see the general section with all the movies but nothing else.
 Only authenticated users have permission to access other sections.
 They could open "View Details" and "Write a Review" sections,
 where they have the opportunity to leave a comment or review about the movie.
