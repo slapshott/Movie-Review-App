@@ -46,13 +46,6 @@ export class ReviewsService {
         return headers;
     }
 
-    getDeleteHeaders() {
-        let headers = new Headers()
-        headers.append('Authorization', 'Basic ' + JSON.parse(localStorage.getItem('profile'))['_kmd']['authtoken'])
-        headers.append('Content-Type', 'application/json')
-        return headers;
-    }
-
     getUserDetails() {
         return {
             id: JSON.parse(localStorage.getItem('profile'))['_id'],
