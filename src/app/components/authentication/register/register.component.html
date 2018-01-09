@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="username" class="col-lg-2 control-label">Username</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="username" placeholder="Enter username..." formControlName="username">
+        <input type="text" class="form-control" id="username" placeholder="Enter username..." formControlName="username" >
 
         <div class="alert alert-warning" *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">You must enter a username!</div>
 

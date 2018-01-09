@@ -10,4 +10,4 @@ where they have the opportunity to leave a comment or review about the movie.
 In the "View Details" section users could visit the movie website,
 also receiving details containing genre,realease date and a short film overview.
 Every single user can edit or delete it's personal comment only.
-In the "Write a Review" section there are options to ratе and write a review about the certain movie .
+In the "Write a Review" section there are options to ratе and write a review about the certain movie.

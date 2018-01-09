@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 import { MoviesService } from '../../service/movies.service'
 import { ReviewsService } from '../../service/reviews.service'
+import { AuthenticationService } from 'app/service/authentication.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class ReviewComponent implements OnInit {
     private formBuilder: FormBuilder,
     private moviesService: MoviesService,
     private router: ActivatedRoute,
-    private reviewsService: ReviewsService
+    private reviewsService: ReviewsService,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {

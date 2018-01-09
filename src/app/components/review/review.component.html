@@ -1,5 +1,5 @@
 
-<div *ngIf="movie">
+<div *ngIf="movie && auth.isLoggedIn()">
   <div class="panel panel-deafult">
     <div class="panel-heading">
       <h2 class="panel-title">{{movie.title}}</h2>

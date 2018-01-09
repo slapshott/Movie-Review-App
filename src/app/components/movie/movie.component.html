@@ -1,4 +1,4 @@
-<div *ngIf="movie">
+<div *ngIf="movie && auth.isLoggedIn()">
   <div class="panel panel-deafult">
     <div class="panel-heading">
       <h2 class="panel-title">{{movie.title}}</h2>
@@ -41,14 +41,14 @@
             </div>
             <div *ngIf="commentToEditId === comment._id;then editContent else content"></div>
             <ng-template #content>
-              <div class="panel-body">
+              <div class="panel-body">  
                 {{comment.comment}}
               </div>
             </ng-template>
             <ng-template #editContent>
               <div class="panel-body">
                 <input type="text" value="{{commentToEdit.comment}}" (change)="changeCommentContent($event)" />
-                <input type="submit" (click)="sendEditComment()" value="Send" />
+                <input type="submit" (click)="sendEditComment()" value="Change" />
               </div>
             </ng-template>
             <div *ngIf="comment.user.id === auth.getLoggedInUserId()" class="panel-footer">

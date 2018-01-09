@@ -87,7 +87,7 @@ export class AuthenticationService {
             .subscribe(
             res => {    
                 localStorage.clear();
-                this.router.navigate['/']
+                this.router.navigate['']
             },
             err => console.log(err)
             )
