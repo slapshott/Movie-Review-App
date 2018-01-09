@@ -44,18 +44,12 @@ export class CommentsService{
         )
     }
 
-    editComment(comment: string, movieId: string, commentId: string){
-        let url = `${this.baseUrl}appdata/${this.appKey}/comments/${commentId}`
-
-        let newComment = {
-            movieId: movieId,
-            user: this.getUserDetails(),
-            comment: comment
-        }
+    editComment(edittedComment){
+        let url = `${this.baseUrl}appdata/${this.appKey}/comments/${edittedComment._id}`
         
-        return this.http.post(
+        return this.http.put(
             url,
-            JSON.stringify(newComment),
+            JSON.stringify(edittedComment),
             {headers: this.getUserHeaders()}
         )
         

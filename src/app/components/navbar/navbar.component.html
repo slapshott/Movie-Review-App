@@ -11,7 +11,7 @@
       </ul>
       <ul *ngIf="auth.isLoggedIn()" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profile">Profile</a></li>
-        <li><a href="#" (click)="logout()">Logout</a></li>
+        <li><a class="pointer" (click)="logout()">Logout</a></li>
       </ul>
     </div>
   </div>

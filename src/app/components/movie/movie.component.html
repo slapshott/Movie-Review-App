@@ -10,7 +10,9 @@
         </div>
         <div class="col-md-7">
           <ul class="list-group">
-            <li class="list-group-item">Genres: <span *ngFor="let genre of movie.genres">{{genre.name}} </span></li>
+            <li class="list-group-item">Genres:
+              <span *ngFor="let genre of movie.genres">{{genre.name}} </span>
+            </li>
             <li class="list-group-item">Release Date: {{movie.release_date}}</li>
             <li class="list-group-item">{{movie.overview}}</li>
           </ul>
@@ -33,15 +35,25 @@
         <div class="col-lg-12 col-sm-6">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <strong>{{comment.user.username}}</strong><br/>
+              <strong>{{comment.user.username}}</strong>
+              <br/>
               <span class="text-muted">Comment added: {{comment._kmd.lmt | date}}</span>
             </div>
-            <div class="panel-body">
-              {{comment.comment}}
-            </div>
-            <div class="panel-footer">
-              <input type="submit" class="btn btn-danger btn-sm" (click)="deleteComment()" value="Delete"/>
-              <input type="submit" class="btn btn-warning btn-sm" (click)="editComment()" value="Edit"/>
+            <div *ngIf="commentToEditId === comment._id;then editContent else content"></div>
+            <ng-template #content>
+              <div class="panel-body">
+                {{comment.comment}}
+              </div>
+            </ng-template>
+            <ng-template #editContent>
+              <div class="panel-body">
+                <input type="text" value="{{commentToEdit.comment}}" (change)="changeCommentContent($event)" />
+                <input type="submit" (click)="sendEditComment()" value="Send" />
+              </div>
+            </ng-template>
+            <div *ngIf="comment.user.id === auth.getLoggedInUserId()" class="panel-footer">
+              <input type="submit" class="btn btn-danger btn-sm" (click)="deleteComment(comment._id)" value="Delete" />
+              <input type="submit" class="btn btn-warning btn-sm" (click)="editComment(comment._id)" value="Edit" />
             </div>
           </div>
         </div>

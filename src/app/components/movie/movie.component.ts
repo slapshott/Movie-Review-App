@@ -18,6 +18,9 @@ export class MovieComponent implements OnInit {
   comments: Array<any>
   newComment: string
 
+  commentToEditId
+  commentToEdit
+
   constructor(
     private router: ActivatedRoute,
     private moviesService: MoviesService,
@@ -46,28 +49,35 @@ export class MovieComponent implements OnInit {
     this.commentsService
       .getAllComments(id)
       .subscribe(comments => {
-      this.comments = comments
-      // comments.forEach(comment => {
-      //   console.log(comment._id)
-      // });
+        this.comments = comments
+        // comments.forEach(comment => {
+        //   console.log(comment._id)
+        // });
+      })
+  }
+
+  deleteComment(id) {
+    this.commentsService.deleteComment(id).subscribe(res => {
+      if (res.status === 200) {
+        let index = this.comments.findIndex(comment => comment._id === id);
+        this.comments.splice(index, 1);
+      }
     })
   }
 
-  deleteComment(){
-    let movieId = this.movie['id']
-    this.commentsService.getAllComments(movieId).subscribe(comment => {
-      let id = comment[0]['_id']
-      console.log(id)
-      this.commentsService.deleteComment(id)
-    })
-    
+  editComment(id: string) {
+    this.commentToEditId = id;
+    this.commentToEdit = this.comments.find(comment => comment._id === id);
   }
 
-  editComment(){
-    let comment 
-    let movieId
-    let commentId
-    this.commentsService.editComment(comment, movieId, commentId)
+  changeCommentContent(event: any) {
+    this.commentToEdit.comment = event.target.value;
   }
 
+  sendEditComment() {
+    this.commentsService.editComment(this.commentToEdit).subscribe(res => {
+      this.commentToEdit = '';
+      this.commentToEditId = '';
+    });
+  }
 }

@@ -67,6 +67,14 @@ export class AuthenticationService {
         return false;
     }
 
+    getLoggedInUserId() {
+        if (this.isLoggedIn()) {
+            return JSON.parse(localStorage.getItem('profile'))._id;
+        }
+
+        return null;
+    }
+
     logout() {
         let headers = new Headers()
 
