@@ -21,6 +21,9 @@ import { HomeComponent } from './components/home/home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { ReviewComponent } from './components/review/review.component';
 
+//Guards 
+import { GuardsModule } from 'app/guards/guards.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,8 @@ import { ReviewComponent } from './components/review/review.component';
     JsonpModule,
     routing,
     ReactiveFormsModule,
-    RatingModule
+    RatingModule,
+    GuardsModule
   ],
   providers: [ 
     AuthenticationService,

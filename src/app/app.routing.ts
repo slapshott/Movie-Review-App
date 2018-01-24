@@ -8,6 +8,7 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component'
 import { MovieComponent } from './components/movie/movie.component'
 import { ReviewComponent } from './components/review/review.component'
+import { AuthGuard } from 'app/guards/authentication/auth.guard';
 
 const appRoutes: Routes = [
     {
@@ -24,11 +25,13 @@ const appRoutes: Routes = [
     },
     {
         path: 'movie/:id',
-        component: MovieComponent
+        component: MovieComponent,
+        canActivate: [AuthGuard]
     },
     {
         path:'reviews/:movieId/add-review',
-        component: ReviewComponent
+        component: ReviewComponent,
+        canActivate: [AuthGuard]
     }
 ]
 

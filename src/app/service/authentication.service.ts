@@ -9,6 +9,7 @@ import { kinvey } from '../utils/constants';
 @Injectable()
 export class AuthenticationService {
 
+    public redirectUrl : string;
     baseUrl: String;
     appKey: String;
     appSecret: String;
@@ -48,13 +49,11 @@ export class AuthenticationService {
         return this.http.post(loginUrl, JSON.stringify(data), { headers: headers })
             .map(x => x.json())
             .subscribe(
-                res => {
-                    // console.log("Response -> " + JSON.stringify(res))
+                res => {    
                     this.router.navigate(['/'])
                     localStorage.setItem('profile', JSON.stringify(res))
                 },
                 err => {
-                    // console.log("Error -> " + err)
                     this.router.navigate(['/login'])
                 });
     }
