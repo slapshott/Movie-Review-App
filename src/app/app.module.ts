@@ -7,16 +7,13 @@ import { RatingModule } from 'ngx-rating'
 
 // Services
 import { routing} from './app.routing'
-import { AuthenticationService } from './service/authentication.service'
-import { CommentsService } from './service/comments.service'
-import { MoviesService } from './service/movies.service'
-import { ReviewsService } from './service/reviews.service'
+import { ServiceModule } from './service/service.module'
 
 // Components
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { ReviewComponent } from './components/review/review.component';
@@ -27,10 +24,10 @@ import { GuardsModule } from 'app/guards/guards.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    NavbarComponent,
     MovieComponent,
     ReviewComponent
   ],
@@ -42,14 +39,11 @@ import { GuardsModule } from 'app/guards/guards.module';
     routing,
     ReactiveFormsModule,
     RatingModule,
-    GuardsModule
+    GuardsModule,
+    ServiceModule
+  
   ],
-  providers: [ 
-    AuthenticationService,
-    MoviesService,
-    CommentsService,
-    ReviewsService,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
