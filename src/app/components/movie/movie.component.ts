@@ -50,9 +50,6 @@ export class MovieComponent implements OnInit {
       .getAllComments(id)
       .subscribe(comments => {
         this.comments = comments
-        // comments.forEach(comment => {
-        //   console.log(comment._id)
-        // });
       })
   }
 

@@ -13,7 +13,8 @@ import { ServiceModule } from './service/service.module'
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from 'app/components/navbar/navbar.component';
+import { ProfileComponent } from './components/profile/profile.component'
 import { HomeComponent } from './components/home/home.component';
 import { MovieComponent } from './components/movie/movie.component';
 import { ReviewComponent } from './components/review/review.component';
@@ -21,15 +22,18 @@ import { ReviewComponent } from './components/review/review.component';
 //Guards 
 import { GuardsModule } from 'app/guards/guards.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    ProfileComponent,
+    NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
-    NavbarComponent,
     MovieComponent,
     ReviewComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { GuardsModule } from 'app/guards/guards.module';
     ReactiveFormsModule,
     RatingModule,
     GuardsModule,
-    ServiceModule
+    ServiceModule,
   
   ],
   providers: [],

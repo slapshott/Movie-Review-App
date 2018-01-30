@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 
 import { kinvey } from '../utils/constants';
+import { Jsonp } from '@angular/http/src/http';
 
 @Injectable()
 export class AuthenticationService {
@@ -68,10 +69,18 @@ export class AuthenticationService {
 
     getLoggedInUserId() {
         if (this.isLoggedIn()) {
-            return JSON.parse(localStorage.getItem('profile'))._id;
+            return JSON.parse(localStorage.getItem('profile'))['_id'];
         }
 
         return null;
+    }
+
+    getLoggedInUser(){
+        if(this.isLoggedIn()){
+            return JSON.parse(localStorage.getItem('profile'))['username']
+        }
+
+        return null
     }
 
     logout() {

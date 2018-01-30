@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/authentication/login/login.component'
 import { RegisterComponent } from './components/authentication/register/register.component'
+import { ProfileComponent } from './components/profile/profile.component'
 import { MovieComponent } from './components/movie/movie.component'
 import { ReviewComponent } from './components/review/review.component'
 import { AuthGuard } from 'app/guards/authentication/auth.guard';
@@ -32,6 +33,10 @@ const appRoutes: Routes = [
         path:'reviews/:movieId/add-review',
         component: ReviewComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent
     }
 ]
 
