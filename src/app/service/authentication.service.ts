@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 
 import { kinvey } from '../utils/constants';
-import { Jsonp } from '@angular/http/src/http';
+import { Jsonp } from '@angular/http';
 
 @Injectable()
 export class AuthenticationService {

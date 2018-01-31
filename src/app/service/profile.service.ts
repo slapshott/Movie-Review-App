@@ -18,7 +18,12 @@ export class ProfileService {
 
     getAllComments(){
         let url = `${this.baseUrl}appdata/${this.appKey}/comments`
-        return this.http.get(url,  { headers: this.getUserHeaders() } )
+        return this.http.get(url,  { headers: this.getUserHeaders() })
+    }
+
+    getAllReviews(){
+        let url = `${this.baseUrl}appdata/${this.appKey}/reviews`
+        return this.http.get(url, { headers: this.getUserHeaders() })
     }
 
     getUserHeaders() {

@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit{
 
     name:string;
     comments = []
+    reviews = []
 
     constructor(
         private auth:AuthenticationService, 
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit{
 
     ngOnInit(){   
         this.loadUserComments()
+        this.loadUserReviews()
     }
 
     loadUserComments(){
@@ -35,17 +37,38 @@ export class ProfileComponent implements OnInit{
         let user = this.auth.getLoggedInUser()
         this.profileService.getAllComments()
         .subscribe(res => {
-            res.json().forEach(x => {  
-                if(x['user']['username'] === user){
-                    movieId = x['movieId']
+            res.json().forEach(c => {  
+                if(c.user.username === user){
+                    movieId = c.movieId
                     let comment = {}
-                    comment['comment'] = x['comment']
-                    comment['_kmd'] = x['_kmd'] 
-                    this.movieService.getMovie(movieId).subscribe(movie => comment['title'] = movie['title'])
+                    comment['comment'] = c.comment
+                    comment['date'] = c._kmd
+                    this.movieService.getMovie(movieId).subscribe(movie => comment['title'] = movie.title)
                     this.comments.push(comment)
                 }      
             })
         }) 
+    }
+
+    loadUserReviews(){
+        let movieId
+        let user = this.auth.getLoggedInUser()
+        this.profileService.getAllReviews()
+        .subscribe(res => {
+            console.log(res.json())
+            res.json().forEach(r => {
+                if(r.user.username === user){
+                    movieId = r.movieId
+                    let review = {}
+                    review['content'] = r.content
+                    review['rating'] = r.rating
+                    review['date'] = r._kmd
+                    this.movieService.getMovie(movieId).subscribe(movie => review['title'] = movie.title)
+                    this.reviews.push(review)
+                }
+            })
+
+        })
     }
     
 }

@@ -16,10 +16,31 @@
             <div class="col-lg-12 col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <span class="text-muted">Comment added: {{comment._kmd.ect | date}}</span><br>
+                        <span class="text-muted">Comment added: {{comment.date.ect | date}}</span><br>
                         <span class="text-muted">Movie: {{comment.title}}</span>
                     </div>
                     <div class="panel-body">{{comment.comment}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Your Reviews: </h4>
+        </div>
+    </div>
+
+    <div *ngIf="reviews && reviews.length != 0">
+        <div *ngFor="let review of reviews" class="row">
+            <div class="col-lg-12 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="text-muted">Review added: {{review.date.ect | date}}</span><br>
+                        <span class="text-muted">Movie: {{review.title}}</span><br>
+                        <span class="text-muted">Stars: {{review.rating}}</span>
+                    </div>
+                    <div class="panel-body">{{review.content}}</div>
                 </div>
             </div>
         </div>
