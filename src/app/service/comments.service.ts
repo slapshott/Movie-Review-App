@@ -46,13 +46,12 @@ export class CommentsService{
 
     editComment(edittedComment){
         let url = `${this.baseUrl}appdata/${this.appKey}/comments/${edittedComment._id}`
-        
+
         return this.http.put(
             url,
             JSON.stringify(edittedComment),
             {headers: this.getUserHeaders()}
         )
-        
     }
 
     getUserHeaders() {
@@ -68,4 +67,5 @@ export class CommentsService{
             username: JSON.parse(localStorage.getItem('profile'))['username']
         }
     }   
+
 }
