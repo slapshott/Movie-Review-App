@@ -32,7 +32,7 @@ import { GuardsModule } from 'app/guards/guards.module';
     LoginComponent,
     RegisterComponent,
     MovieComponent,
-    ReviewComponent
+    ReviewComponent,
 
   ],
   imports: [

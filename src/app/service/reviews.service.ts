@@ -39,6 +39,25 @@ export class ReviewsService {
         return this.http.get(url, { headers: this.getUserHeaders() }).map(x => x.json())
     }
 
+    deleteReview(id){
+        let url = `${this.baseUrl}appdata/${this.appKey}/reviews/${id}`
+
+        return this.http.delete(
+            url,
+            {headers: this.getUserHeaders()}
+        )
+    }
+
+    editReview(edittedReview){
+        let url = `${this.baseUrl}appdata/${this.appKey}/reviews/${edittedReview._id}`
+
+        return this.http.put(
+            url,
+            JSON.stringify(edittedReview),
+            {headers: this.getUserHeaders()}
+        )
+    }
+
     getUserHeaders() {
         let headers = new Headers()
         headers.append('Authorization', 'Kinvey ' + JSON.parse(localStorage.getItem('profile'))['_kmd']['authtoken'])

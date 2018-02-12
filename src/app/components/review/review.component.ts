@@ -19,6 +19,9 @@ export class ReviewComponent implements OnInit {
   movie: Object
   reviews: Array<any>
   reviewContent: string
+  
+  reviewToEditId: string
+  reviewToEdit
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +46,32 @@ export class ReviewComponent implements OnInit {
       this.reviewContent = ''
     })
   }
+
+  deleteReview(id){
+    this.reviewsService.deleteReview(id).subscribe(res => {
+      if(res.status === 200){
+       let index = this.reviews.findIndex(review => review._id = id)
+       this.reviews.splice(index, 1)
+      }
+    })
+  }
+
+  editReview(id){
+    this.reviewToEditId = id;
+    this.reviewToEdit = this.reviews.find(review => review._id === id)
+  }
+
+  changeReviewContent(event: any){
+    this.reviewToEdit.content = event.target.value
+  }
+
+  sendEditReview(){
+    this.reviewsService.editReview(this.reviewToEdit).subscribe(res => {
+      this.reviewToEdit = '';
+      this.reviewToEditId = '';
+    })
+  }
+
 
   loadReview(id){
     this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)

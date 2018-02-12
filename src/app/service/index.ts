@@ -9,5 +9,5 @@ export const allServices = [
     MoviesService, 
     CommentsService, 
     ReviewsService,
-    ProfileService
+    ProfileService,
 ]

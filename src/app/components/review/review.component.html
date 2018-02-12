@@ -43,12 +43,25 @@
                   <span class="text-muted">Review added: {{review._kmd.lmt | date}} </span><br/>
                   <span class="text-muted">Stars: {{review.rating}} </span>
                 </div>
-                <div class="panel-body">
-                  {{review.content}}
+                <div *ngIf="reviewToEditId === review._id;then editContent else content"></div>
+                <ng-template #content>
+                  <div class="panel-body">  
+                    {{review.content}}
+                  </div>
+                </ng-template>
+                <ng-template #editContent>
+                  <div class="panel-body">
+                    <input type="text" value="{{reviewToEdit.content}}" (change)="changeReviewContent($event)" />
+                    <input type="submit" (click)="sendEditReview()" value="Change" />
+                  </div>
+                </ng-template>
+                <div *ngIf="review.user.id === auth.getLoggedInUserId() || auth.isAdmin()" class="panel-footer">
+                  <input type="submit" class="btn btn-danger btn-sm" (click)="deleteReview(review._id)" value="Delete" />
+                  <input type="submit" class="btn btn-warning btn-sm" (click)="editReview(review._id)" value="Edit" />
                 </div>
               </div>
             </div>
-          </div>
+          </div>  
         </div>
 
       </div>
