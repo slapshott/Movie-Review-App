@@ -51,6 +51,7 @@
                 </ng-template>
                 <ng-template #editContent>
                   <div class="panel-body">
+                    <input type="number" [max]="10" value="{{reviewToEdit.rating}}" (change)="changeReviewRating($event)" /><br>
                     <input type="text" value="{{reviewToEdit.content}}" (change)="changeReviewContent($event)" />
                     <input type="submit" (click)="sendEditReview()" value="Change" />
                   </div>

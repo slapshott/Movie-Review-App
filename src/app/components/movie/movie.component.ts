@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
 import { MoviesService } from '../../service/movies.service'
 import { ReviewsService } from '../../service/reviews.service'
 import { AuthenticationService } from '../../service/authentication.service'
-import { CommentsService } from 'app/service/comments.service';
-
+import { CommentsService } from 'app/service/comments.service'
+import { LikesService } from '../../service/likes.service'
 
 @Component({
   selector: 'app-movie',
@@ -14,24 +14,33 @@ import { CommentsService } from 'app/service/comments.service';
 })
 export class MovieComponent implements OnInit {
 
+
   movie: Object
   comments: Array<any>
   newComment: string
-
+  
   commentToEditId
   commentToEdit
+
+  dataArray
+  likes
+  user = this.auth.getLoggedInUser()
+
+  isUserLike: Boolean
 
   constructor(
     private router: ActivatedRoute,
     private moviesService: MoviesService,
     private auth: AuthenticationService,
-    private commentsService: CommentsService
+    private commentsService: CommentsService,
+    private likesService: LikesService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {  
     this.router.params.subscribe(params => {
       let id = params['id']
       this.loadComments(id)
+      this.loadLikes(id)
     })
   }
 
@@ -77,4 +86,42 @@ export class MovieComponent implements OnInit {
       this.commentToEditId = '';
     });
   }
+
+  addLike(){
+    let movieId = this.movie['id']
+    let user = this.auth.getLoggedInUser()
+    this.isUserLike = true
+
+    for (let data of this.dataArray){
+      if(user === data['user']){
+        return
+      }    
+    }
+    this.likesService.addNewLike(1, movieId, user).subscribe(res => {
+      this.loadLikes(movieId)
+    })
+  }
+
+  removeLike(){
+    this.isUserLike = false 
+    let movieId = this.movie['id']
+      this.likesService.removeLike(movieId).subscribe(res => {
+        if(res.status === 200){
+          let index = this.dataArray.findIndex(like => like._id === movieId)
+          this.dataArray.splice(index, 1)  
+          this.loadLikes(movieId)
+        }
+      })
+  }
+
+  loadLikes(id){
+    this.moviesService.getMovie(id).subscribe(movie => this.movie = movie)
+    this.likesService.getAllLikes(id)
+    .subscribe(data => {
+        this.dataArray = data;
+        this.likes = this.dataArray.length
+      })
+    
+  }
+
 }

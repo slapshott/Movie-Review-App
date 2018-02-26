@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit{
         let user = this.auth.getLoggedInUser()
         this.profileService.getAllReviews()
         .subscribe(res => {
-            console.log(res.json())
             res.json().forEach(r => {
                 if(r.user.username === user){
                     movieId = r.movieId

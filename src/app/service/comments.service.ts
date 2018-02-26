@@ -38,10 +38,7 @@ export class CommentsService{
 
     deleteComment(id){
         let url = `${this.baseUrl}appdata/${this.appKey}/comments/${id}`
-        return this.http.delete(
-            url,
-            {headers: this.getUserHeaders()}
-        )
+        return this.http.delete( url, {headers: this.getUserHeaders()} )
     }
 
     editComment(edittedComment){

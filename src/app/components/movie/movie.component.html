@@ -24,6 +24,16 @@
   </div>
 
   <div class="container">
+
+      <div class="col-sm-12">
+        <h3>Likes</h3>
+        <p>{{likes}}</p>
+        <span *ngIf="!isUserLike">
+          <input type="submit" (click)="addLike()" value="Like" /> 
+        </span>
+        <input type="submit" (click)="removeLike()" value="Dislike" /> 
+      </div>
+
     <div class="row">
       <div class="col-sm-12">
         <h3>User Comments: </h3>

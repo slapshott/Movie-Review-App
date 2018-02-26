@@ -54,10 +54,8 @@ export class AuthenticationService {
                     if(res._kmd.roles !== undefined){
                         localStorage.setItem('role', 'admin')
                     }
-                    console.log(res)
                     this.router.navigate(['/'])
                     localStorage.setItem('profile', JSON.stringify(res))
-                    console.log(localStorage.getItem('role'))
                 },
                 err => {
                     this.router.navigate(['/login'])

@@ -44,6 +44,7 @@ export class ReviewComponent implements OnInit {
     this.reviewsService.addNewReview(this.starsCount, this.reviewContent, this.movie).subscribe(res => {
       this.loadReview(movieId)
       this.reviewContent = ''
+      this.starsCount = 0
     })
   }
 
@@ -59,6 +60,10 @@ export class ReviewComponent implements OnInit {
   editReview(id){
     this.reviewToEditId = id;
     this.reviewToEdit = this.reviews.find(review => review._id === id)
+  }
+
+  changeReviewRating(event: any){
+    this.reviewToEdit.rating = event.target.value
   }
 
   changeReviewContent(event: any){
